@@ -48,6 +48,15 @@ function App() {
       let temp = Array(1).fill(queue[i]);
       setSoundsPlaying(temp); // adding the first playing sound into the list
     }
+    const indexOfPlaying = isPlaying.findIndex(
+      // checking if the pad clicked already playing
+      (audioElem) => audioElem.currentSrc === sound.src
+    );
+    if (indexOfPlaying !== -1) {
+      // if playing, pausing and resetting the sound
+      sound.pause();
+      sound.currentTime = 0;
+    }
   };
 
   useEffect(() => {
