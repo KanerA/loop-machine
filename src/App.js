@@ -14,7 +14,6 @@ function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
   const [queue, setQueue] = useState([]); // list of the audios
   const [soundsPlaying, setSoundsPlaying] = useState([]); // list of the sounds currently playing
-
   const audioList = [
     audio,
     audio2,
@@ -42,6 +41,15 @@ function App() {
     gridTemplateRows: "100px 100px 100px",
   };
 
+  const padClickHandler = (sound, i) => {
+    const isPlaying = queue.filter((audioObj) => !audioObj.paused);
+    if (isPlaying.length === 0) {
+      sound.play();
+      let temp = Array(1).fill(queue[i]);
+      setSoundsPlaying(temp); // adding the first playing sound into the list
+    }
+  };
+
   useEffect(() => {
     // create refs to all the divs holding a sound
     setSoundsRefs((audioList) => {
@@ -65,6 +73,7 @@ function App() {
             id={`pad-${i + 1}`}
             ref={soundsRefs[i]}
             style={styles}
+            onClick={() => padClickHandler(sound, i)}
           >
             Click Me {`No.${i + 1}`}
           </div>
