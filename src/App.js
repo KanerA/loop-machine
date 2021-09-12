@@ -12,6 +12,7 @@ import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3";
 
 function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
+  const [queue, setQueue] = useState([]); // list of the audios
   const audioList = [
     audio,
     audio2,
@@ -47,6 +48,11 @@ function App() {
         .map((_, i) => audioList[i] || createRef());
     });
   }, []);
+
+  useEffect(() => {
+    const tempArr = audioList.map((audio) => new Audio(audio)); // create an array of audio objects
+    setQueue(tempArr);
+  }, [soundsRefs]);
 
   return (
     <div className="loopMachine" style={loopMachineStyles}>
