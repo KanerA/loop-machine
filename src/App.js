@@ -13,6 +13,7 @@ import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3";
 function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
   const [queue, setQueue] = useState([]); // list of the audios
+  const [soundsPlaying, setSoundsPlaying] = useState([]); // list of the sounds currently playing
 
   const audioList = [
     audio,
