@@ -22,6 +22,33 @@ function App() {
     audio8,
     audio9,
   ];
+
+  const styles = {
+    // basic style for visible pads
+    height: "100%",
+    width: "100%",
+    backgroundColor: "#000000",
+    color: "#ffffff",
+    border: "1px solid purple",
+  };
+  const loopMachineStyles = {
+    // basic style for looks of pads grid
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    gridTemplateRows: "100px 100px 100px",
+  };
+
+  return (
+    <div className="loopMachine" style={loopMachineStyles}>
+      {audioList.map((sound, i) => {
+        return (
+          <div key={`pad-${i}`} id={`pad-${i + 1}`} style={styles}>
+            Click Me {`No.${i + 1}`}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
 
 export default App;
