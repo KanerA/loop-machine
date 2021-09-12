@@ -46,17 +46,20 @@ function App() {
     if (isPlaying.length === 0) {
       sound.play();
       let temp = Array(1).fill(queue[i]);
-      setSoundsPlaying(temp); // adding the first playing sound into the list
+      return setSoundsPlaying(temp); // adding the first playing sound into the list
     }
-    const indexOfPlaying = isPlaying.findIndex(
+    const indexToPause = isPlaying.findIndex(
       // checking if the pad clicked already playing
       (audioElem) => audioElem.currentSrc === sound.src
     );
-    if (indexOfPlaying !== -1) {
+    if (indexToPause !== -1) {
       // if playing, pausing and resetting the sound
       sound.pause();
-      sound.currentTime = 0;
+      return (sound.currentTime = 0);
     }
+    setSoundsPlaying([...soundsPlaying, queue[i]]);
+    sound.loop = !sound.loop;
+    sound.play();
   };
 
   useEffect(() => {
