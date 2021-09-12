@@ -55,6 +55,11 @@ function App() {
     );
     if (indexToPause !== -1) {
       // if playing, pausing and resetting the sound
+      const updatedSoundsPlaying = soundsPlaying.filter(
+        // remove paused song from playing list
+        (_, i) => i !== indexToPause
+      );
+      setSoundsPlaying(updatedSoundsPlaying); // update the playing list
       sound.pause();
       return (sound.currentTime = 0);
     }
