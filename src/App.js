@@ -44,6 +44,7 @@ function App() {
   const padClickHandler = (sound, i) => {
     const isPlaying = queue.filter((audioObj) => !audioObj.paused);
     if (isPlaying.length === 0) {
+      sound.loop = !sound.loop;
       sound.play();
       let temp = Array(1).fill(queue[i]);
       return setSoundsPlaying(temp); // adding the first playing sound into the list
