@@ -11,6 +11,7 @@ import audio8 from "./audio_loops/PAS3GROOVE1.03B.mp3";
 import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3";
 
 function App() {
+  const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
   const audioList = [
     audio,
     audio2,
@@ -37,6 +38,15 @@ function App() {
     gridTemplateColumns: "1fr 1fr 1fr",
     gridTemplateRows: "100px 100px 100px",
   };
+
+  useEffect(() => {
+    // create refs to all the divs holding a sound
+    setSoundsRefs((audioList) => {
+      return Array(9)
+        .fill()
+        .map((_, i) => audioList[i] || createRef());
+    });
+  }, []);
 
   return (
     <div className="loopMachine" style={loopMachineStyles}>
