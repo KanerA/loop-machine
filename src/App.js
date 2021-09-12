@@ -13,6 +13,7 @@ import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3";
 function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
   const [queue, setQueue] = useState([]); // list of the audios
+
   const audioList = [
     audio,
     audio2,
@@ -56,9 +57,14 @@ function App() {
 
   return (
     <div className="loopMachine" style={loopMachineStyles}>
-      {audioList.map((sound, i) => {
+      {queue.map((sound, i) => {
         return (
-          <div key={`pad-${i}`} id={`pad-${i + 1}`} style={styles}>
+          <div
+            key={`pad-${i}`}
+            id={`pad-${i + 1}`}
+            ref={soundsRefs[i]}
+            style={styles}
+          >
             Click Me {`No.${i + 1}`}
           </div>
         );
