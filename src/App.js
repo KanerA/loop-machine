@@ -42,30 +42,23 @@ function App() {
   };
 
   const padClickHandler = (sound, i) => {
-    const isPlaying = queue.filter((audioObj) => !audioObj.paused);
-    if (isPlaying.length === 0) {
-      sound.loop = !sound.loop;
-      sound.play();
-      let temp = Array(1).fill(queue[i]);
-      return setSoundsPlaying(temp); // adding the first playing sound into the list
-    }
-    const indexToPause = isPlaying.findIndex(
-      // checking if the pad clicked already playing
-      (audioElem) => audioElem.currentSrc === sound.src
+    const alreadyPlaying = soundsPlaying.findIndex(
+      (soundElem) => soundElem === sound
     );
-    if (indexToPause !== -1) {
-      // if playing, pausing and resetting the sound
+
+    if (alreadyPlaying > -1) {
+      // if the song is playing, pause it
+      sound.loop = !sound.loop;
+      sound.pause();
       const updatedSoundsPlaying = soundsPlaying.filter(
         // remove paused song from playing list
-        (_, i) => i !== indexToPause
+        (_, i) => i !== alreadyPlaying
       );
-      setSoundsPlaying(updatedSoundsPlaying); // update the playing list
-      sound.pause();
-      return (sound.currentTime = 0);
+      return setSoundsPlaying(updatedSoundsPlaying);
     }
-    setSoundsPlaying([...soundsPlaying, queue[i]]);
     sound.loop = !sound.loop;
     sound.play();
+    setSoundsPlaying([...soundsPlaying, sound]);
   };
 
   useEffect(() => {
