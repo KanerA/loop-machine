@@ -70,7 +70,11 @@ function App() {
   };
 
   const pauseAll = () => {
-    soundsPlaying.map((sound) => sound.pause());
+    soundsPlaying.map((sound) => {
+      sound.pause();
+      sound.currentTime = 0;
+      return;
+    });
     setPlaying(false);
   };
 
@@ -110,6 +114,7 @@ function App() {
           return (
             <>
               <Pad
+                key={`pad${i}`}
                 i={i}
                 refAudio={soundsRefs[i]}
                 styles={styles}
