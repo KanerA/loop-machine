@@ -84,7 +84,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (playing && soundsPlaying.length >= 1) {
+    if (playing && soundsPlaying.length === 1) {
       interval.current = setInterval(() => setTimer((timer) => timer + 1), 10);
     }
     if (!playing || soundsPlaying.length === 0) {
