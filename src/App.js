@@ -1,5 +1,6 @@
-import { useState, useEffect, createRef } from "react";
+import { useState, useEffect, createRef, useRef } from "react";
 import "./App.css";
+import Pad from "./components/Pad";
 import audio from "./audio_loops/120_future_funk_beats_25.mp3";
 import audio2 from "./audio_loops/120_stutter_breakbeats_16.mp3";
 import audio3 from "./audio_loops/Bass Warwick heavy funk groove on E 120 BPM.mp3";
@@ -15,6 +16,10 @@ function App() {
   const [queue, setQueue] = useState([]); // list of the audios
   const [soundsPlaying, setSoundsPlaying] = useState([]); // list of the sounds currently playing
   const [playing, setPlaying] = useState(false);
+  const [timer, setTimer] = useState(0);
+
+  const interval = useRef(null);
+
   const audioList = [
     audio,
     audio2,
@@ -61,9 +66,9 @@ function App() {
       );
       return setSoundsPlaying(updatedSoundsPlaying);
     }
-    sound.loop = !sound.loop;
-    sound.play();
     setSoundsPlaying([...soundsPlaying, sound]);
+  };
+
   const pauseAll = () => {
     soundsPlaying.map((sound) => sound.pause());
     setPlaying(false);
@@ -73,6 +78,16 @@ function App() {
     soundsPlaying.map((sound) => sound.play());
     setPlaying(true);
   };
+
+  useEffect(() => {
+    if (playing && soundsPlaying.length >= 1) {
+      interval.current = setInterval(() => setTimer((timer) => timer + 1), 10);
+    }
+    if (!playing || soundsPlaying.length === 0) {
+      clearInterval(interval.current);
+      setTimer(0);
+    }
+  }, [soundsPlaying, playing, interval]);
 
   useEffect(() => {
     // create refs to all the divs holding a sound
