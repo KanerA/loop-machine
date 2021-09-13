@@ -43,6 +43,10 @@ function App() {
   };
 
   const padClickHandler = (sound, i) => {
+    if (!playing) {
+      // create queue if the board is on pause
+      return setSoundsPlaying([...soundsPlaying, sound]);
+    }
     const alreadyPlaying = soundsPlaying.findIndex(
       (soundElem) => soundElem === sound
     );
