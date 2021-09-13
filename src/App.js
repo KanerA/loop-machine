@@ -33,21 +33,6 @@ function App() {
     audio9,
   ];
 
-  const styles = {
-    // basic style for visible pads
-    height: "100%",
-    width: "100%",
-    backgroundColor: "#000000",
-    color: "#ffffff",
-    border: "1px solid purple",
-  };
-  const loopMachineStyles = {
-    // basic style for looks of pads grid
-    display: "grid",
-    gridTemplateColumns: "1fr 1fr 1fr",
-    gridTemplateRows: "100px 100px 100px",
-  };
-
   const padClickHandler = (sound, i) => {
     if (!playing) {
       // create queue if the board is on pause
@@ -110,7 +95,7 @@ function App() {
 
   return (
     <>
-      <div className="loopMachine" style={loopMachineStyles}>
+      <div className="loopMachine">
         {queue.map((sound, i) => {
           return (
             <>
@@ -118,7 +103,6 @@ function App() {
                 key={`pad${i}`}
                 i={i}
                 refAudio={soundsRefs[i]}
-                styles={styles}
                 padClickHandler={padClickHandler}
                 sound={sound}
                 timer={timer}

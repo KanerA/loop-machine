@@ -3,7 +3,6 @@ import React, { useEffect } from "react";
 function Pad({
   i,
   refAudio,
-  styles,
   padClickHandler,
   sound,
   timer,
@@ -20,10 +19,9 @@ function Pad({
   }, [playing, timer, soundsPlaying]);
   return (
     <div
-      key={`pad-${i}`}
+      className="pad"
       id={`pad-${i + 1}`}
       ref={refAudio}
-      style={styles}
       onClick={() => padClickHandler(sound, i)}
     >
       {`No.${i}`}
