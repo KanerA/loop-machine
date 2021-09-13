@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function Pad({
   i,
@@ -9,6 +9,7 @@ function Pad({
   playing,
   soundsPlaying,
 }) {
+  const [padOn, setPadOn] = useState(false);
   useEffect(() => {
     if (playing) {
       if ((timer === 0 || timer % 800 === 0) && soundsPlaying.includes(sound)) {
@@ -19,12 +20,15 @@ function Pad({
   }, [playing, timer, soundsPlaying]);
   return (
     <div
-      className="pad"
+      className={padOn ? "pad padOn" : "pad"}
       id={`pad-${i + 1}`}
       ref={refAudio}
-      onClick={() => padClickHandler(sound, i)}
+      onClick={() => {
+        setPadOn(!padOn);
+        padClickHandler(sound, i);
+      }}
     >
-      {`No.${i}`}
+      <span className="pad-content">{`No.${i}`}</span>
     </div>
   );
 }

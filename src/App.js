@@ -94,8 +94,8 @@ function App() {
   }, [soundsRefs]);
 
   return (
-    <>
-      <div className="loopMachine">
+    <div className="loopMachine">
+      <div className="board" id="board">
         {queue.map((sound, i) => {
           return (
             <>
@@ -114,7 +114,7 @@ function App() {
         })}
       </div>
       <ControlPanel pauseAll={pauseAll} startAll={startAll} />
-    </>
+    </div>
   );
 }
 
