@@ -10,6 +10,14 @@ function Pad({
   playing,
   soundsPlaying,
 }) {
+  useEffect(() => {
+    if (playing) {
+      if ((timer === 0 || timer % 800 === 0) && soundsPlaying.includes(sound)) {
+        sound.play();
+        sound.loop = true;
+      }
+    }
+  }, [playing, timer, soundsPlaying]);
   return (
     <div
       key={`pad-${i}`}
