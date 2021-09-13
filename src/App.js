@@ -14,6 +14,7 @@ function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
   const [queue, setQueue] = useState([]); // list of the audios
   const [soundsPlaying, setSoundsPlaying] = useState([]); // list of the sounds currently playing
+  const [playing, setPlaying] = useState(false);
   const audioList = [
     audio,
     audio2,
@@ -59,6 +60,14 @@ function App() {
     sound.loop = !sound.loop;
     sound.play();
     setSoundsPlaying([...soundsPlaying, sound]);
+  const pauseAll = () => {
+    soundsPlaying.map((sound) => sound.pause());
+    setPlaying(false);
+  };
+
+  const startAll = () => {
+    soundsPlaying.map((sound) => sound.play());
+    setPlaying(true);
   };
 
   useEffect(() => {
@@ -92,8 +101,8 @@ function App() {
           );
         })}
       </div>
-      <button>Pause</button>
-      <button>Start</button>
+      <button onClick={pauseAll}>Pause</button>
+      <button onClick={startAll}>Start</button>
     </>
   );
 }
