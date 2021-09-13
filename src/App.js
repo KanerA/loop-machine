@@ -10,6 +10,7 @@ import audio6 from "./audio_loops/GrooveB_120bpm_Tanggu.mp3";
 import audio7 from "./audio_loops/MazePolitics_120_Perc.mp3";
 import audio8 from "./audio_loops/PAS3GROOVE1.03B.mp3";
 import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3";
+import ControlPanel from "./components/ControlPanel";
 
 function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
@@ -128,8 +129,7 @@ function App() {
           );
         })}
       </div>
-      <button onClick={pauseAll}>Pause</button>
-      <button onClick={startAll}>Start</button>
+      <ControlPanel pauseAll={pauseAll} startAll={startAll} />
     </>
   );
 }
