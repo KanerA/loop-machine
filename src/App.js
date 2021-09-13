@@ -93,15 +93,18 @@ function App() {
       <div className="loopMachine" style={loopMachineStyles}>
         {queue.map((sound, i) => {
           return (
-            <div
-              key={`pad-${i}`}
-              id={`pad-${i + 1}`}
-              ref={soundsRefs[i]}
-              style={styles}
-              onClick={() => padClickHandler(sound, i)}
-            >
-              Click Me {`No.${i + 1}`}
-            </div>
+            <>
+              <Pad
+                i={i}
+                refAudio={soundsRefs[i]}
+                styles={styles}
+                padClickHandler={padClickHandler}
+                sound={sound}
+                timer={timer}
+                playing={playing}
+                soundsPlaying={soundsPlaying}
+              />
+            </>
           );
         })}
       </div>
