@@ -82,8 +82,7 @@ function App() {
 
   const pauseAll = () => {
     soundsPlaying.map((sound) => {
-      sound.pause();
-      return (sound.currentTime = 0);
+      return sound.pause();
     });
     setPlaying(false);
   };
