@@ -100,6 +100,7 @@ function App() {
   };
 
   useEffect(() => {
+    // setting the timer for sync
     if (playing && soundsPlaying.length === 1) {
       interval.current = setInterval(() => setTimer((timer) => timer + 1), 10);
     }
