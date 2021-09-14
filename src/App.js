@@ -1,7 +1,6 @@
 import { useState, useEffect, createRef, useRef } from "react";
 import "./App.css";
 import logo from "./images/logo.png";
-import Pad from "./components/Pad";
 import audio from "./audio_loops/120_future_funk_beats_25.mp3"; //GiVintageRobot
 import audio2 from "./audio_loops/120_stutter_breakbeats_16.mp3"; //GiEchoRipples
 import audio3 from "./audio_loops/Bass Warwick heavy funk groove on E 120 BPM.mp3"; //GiGuitarBassHead
@@ -11,7 +10,9 @@ import audio6 from "./audio_loops/GrooveB_120bpm_Tanggu.mp3"; //FaDrumSteelpan
 import audio7 from "./audio_loops/MazePolitics_120_Perc.mp3"; //GiMaterialsScience
 import audio8 from "./audio_loops/PAS3GROOVE1.03B.mp3"; // FaDrum
 import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3"; //GiDominoMask
+// components
 import ControlPanel from "./components/ControlPanel";
+import Board from "./components/Board";
 import { FaDrum, FaDrumSteelpan } from "react-icons/fa";
 import {
   GiDrum,
@@ -128,23 +129,15 @@ function App() {
     <div className="site">
       <img className="logo" src={logo} alt="looper-logo" />
       <div className="loopMachine" key="loopMachine">
-        <div className="board" id="board" key="board">
-          {queue.map((sound, i) => {
-            return (
-              <Pad
-                key={`pad${i}`}
-                i={i}
-                refAudio={soundsRefs[i]}
-                padClickHandler={padClickHandler}
-                sound={sound}
-                timer={timer}
-                playing={playing}
-                soundsPlaying={soundsPlaying}
-                icon={soundIcons[i]}
-              />
-            );
-          })}
-        </div>
+        <Board
+          queue={queue}
+          soundsRefs={soundsRefs}
+          padClickHandler={padClickHandler}
+          timer={timer}
+          playing={playing}
+          soundsPlaying={soundsPlaying}
+          soundIcons={soundIcons}
+        />
         <ControlPanel
           key="controlPanel"
           pauseAll={pauseAll}
