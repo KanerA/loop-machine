@@ -12,6 +12,7 @@ function Pad({
 }) {
   const [padOn, setPadOn] = useState(false);
   useEffect(() => {
+    // checks to see if the song can play in sync
     if (playing) {
       if ((timer === 0 || timer % 800 === 0) && soundsPlaying.includes(sound)) {
         sound.play();
@@ -19,9 +20,11 @@ function Pad({
       }
     }
   }, [playing, timer, soundsPlaying, sound]);
+
   useEffect(() => {
     setPadOn(playing && padOn);
   }, [playing]);
+
   return (
     <div
       className={padOn ? "pad padOn" : "pad"}
