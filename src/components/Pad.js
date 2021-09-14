@@ -19,6 +19,9 @@ function Pad({
       }
     }
   }, [playing, timer, soundsPlaying, sound]);
+  useEffect(() => {
+    setPadOn(playing && padOn);
+  }, [playing]);
   return (
     <div
       className={padOn ? "pad padOn" : "pad"}
