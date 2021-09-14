@@ -16,6 +16,10 @@ body {
   width: 100vw;
   background: var(--linear-body-color);
 }
+.site {
+  display: flex;
+  flex-direction: column;
+}
 .loopMachine {
   display: flex;
   flex-direction: column;
@@ -73,4 +77,9 @@ body {
 }
 .button:active {
   background-color: rgb(168, 252, 41);
+}
+.logo {
+  border-radius: 10px;
+  width: 150px;
+  margin: 20px auto;
 }
