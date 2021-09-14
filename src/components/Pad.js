@@ -8,6 +8,7 @@ function Pad({
   timer,
   playing,
   soundsPlaying,
+  icon,
 }) {
   const [padOn, setPadOn] = useState(false);
   useEffect(() => {
@@ -17,7 +18,7 @@ function Pad({
         sound.loop = true;
       }
     }
-  }, [playing, timer, soundsPlaying]);
+  }, [playing, timer, soundsPlaying, sound]);
   return (
     <div
       className={padOn ? "pad padOn" : "pad"}
@@ -28,7 +29,7 @@ function Pad({
         padClickHandler(sound, i);
       }}
     >
-      <span className="pad-content">{`No.${i}`}</span>
+      {icon}
     </div>
   );
 }
