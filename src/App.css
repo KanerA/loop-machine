@@ -27,7 +27,7 @@ body {
 .board {
   background-color: rgb(112, 48, 48);
   width: 40%;
-  min-width: 30em;
+  min-width: 20em;
   height: 40vh;
   margin: 50px auto;
   border: 1px solid black;
