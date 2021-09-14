@@ -89,6 +89,7 @@ function App() {
     soundsPlaying.map((sound) => sound.play());
     setPlaying(true);
   };
+
   const stopBoard = () => {
     soundsPlaying.map((sound) => {
       sound.pause();
