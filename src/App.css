@@ -1,0 +1,76 @@
+:root {
+  --linear-body-color: linear-gradient(
+    18deg,
+    rgba(22, 19, 80, 1) 0%,
+    rgba(9, 9, 121, 1) 38%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  width: 100vw;
+  background: var(--linear-body-color);
+}
+.loopMachine {
+  display: flex;
+  flex-direction: column;
+}
+.board {
+  background-color: rgb(112, 48, 48);
+  width: 40%;
+  min-width: 30em;
+  height: 40vh;
+  margin: 50px auto;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 5px;
+  column-gap: 5px;
+}
+.pad {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(85, 85, 85);
+  height: 100%;
+  width: 100%;
+  font-size: 2em;
+}
+.pad:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.padOn:nth-child(1),
+.padOn:nth-child(3),
+.padOn:nth-child(5),
+.padOn:nth-child(7),
+.padOn:nth-child(9) {
+  background-color: rgb(168, 252, 41);
+}
+.padOn:nth-child(2),
+.padOn:nth-child(4),
+.padOn:nth-child(6),
+.padOn:nth-child(8) {
+  background-color: #7d29fc;
+}
+.controlPanel {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  width: 140px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 40px 10px;
+}
+.button:active {
+  background-color: rgb(168, 252, 41);
+}
