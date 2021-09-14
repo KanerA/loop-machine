@@ -3,7 +3,7 @@ import { FaPause, FaPlay, FaStop } from "react-icons/fa";
 
 function ControlPanel({ pauseAll, startAll, stopBoard }) {
   return (
-    <div className="controlPanel">
+    <div className="controlPanel" key="controlPanel">
       <button className="button" onClick={startAll}>
         <FaPlay />
       </button>

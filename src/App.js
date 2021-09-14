@@ -28,10 +28,7 @@ function App() {
   const [soundsPlaying, setSoundsPlaying] = useState([]); // list of the sounds currently playing
   const [playing, setPlaying] = useState(false);
   const [timer, setTimer] = useState(0);
-
-  const interval = useRef(null);
-
-  const audioList = [
+  const [audioList] = useState([
     audio,
     audio2,
     audio3,
@@ -41,7 +38,9 @@ function App() {
     audio7,
     audio8,
     audio9,
-  ];
+  ]);
+
+  const interval = useRef(null);
 
   const soundIcons = [
     <GiVintageRobot />,
@@ -117,35 +116,34 @@ function App() {
         .fill()
         .map((_, i) => audioList[i] || createRef());
     });
-  }, []);
+  }, [audioList]);
 
   useEffect(() => {
     const tempArr = audioList.map((audio) => new Audio(audio)); // create an array of audio objects
     setQueue(tempArr);
-  }, [soundsRefs]);
+  }, [soundsRefs, audioList]);
 
   return (
-    <div className="loopMachine">
-      <div className="board" id="board">
+    <div className="loopMachine" key="loopMachine">
+      <div className="board" id="board" key="board">
         {queue.map((sound, i) => {
           return (
-            <>
-              <Pad
-                key={`pad${i}`}
-                i={i}
-                refAudio={soundsRefs[i]}
-                padClickHandler={padClickHandler}
-                sound={sound}
-                timer={timer}
-                playing={playing}
-                soundsPlaying={soundsPlaying}
-                icon={soundIcons[i]}
-              />
-            </>
+            <Pad
+              key={`pad${i}`}
+              i={i}
+              refAudio={soundsRefs[i]}
+              padClickHandler={padClickHandler}
+              sound={sound}
+              timer={timer}
+              playing={playing}
+              soundsPlaying={soundsPlaying}
+              icon={soundIcons[i]}
+            />
           );
         })}
       </div>
       <ControlPanel
+        key="controlPanel"
         pauseAll={pauseAll}
         startAll={startAll}
         stopBoard={stopBoard}

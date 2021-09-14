@@ -23,11 +23,12 @@ function Pad({
 
   useEffect(() => {
     setPadOn(playing && padOn);
-  }, [playing]);
+  }, [playing, padOn]);
 
   return (
     <div
       className={padOn ? "pad padOn" : "pad"}
+      key={`pad-${i + 1}`}
       id={`pad-${i + 1}`}
       ref={refAudio}
       onClick={() => {
