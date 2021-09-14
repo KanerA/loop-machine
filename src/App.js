@@ -58,8 +58,7 @@ function App() {
   const pauseAll = () => {
     soundsPlaying.map((sound) => {
       sound.pause();
-      sound.currentTime = 0;
-      return;
+      return (sound.currentTime = 0);
     });
     setPlaying(false);
   };
@@ -67,6 +66,14 @@ function App() {
   const startAll = () => {
     soundsPlaying.map((sound) => sound.play());
     setPlaying(true);
+  };
+  const stopBoard = () => {
+    soundsPlaying.map((sound) => {
+      sound.pause();
+      return (sound.currentTime = 0);
+    });
+    setSoundsPlaying([]);
+    setPlaying(false);
   };
 
   useEffect(() => {
@@ -113,7 +120,11 @@ function App() {
           );
         })}
       </div>
-      <ControlPanel pauseAll={pauseAll} startAll={startAll} />
+      <ControlPanel
+        pauseAll={pauseAll}
+        startAll={startAll}
+        stopBoard={stopBoard}
+      />
     </div>
   );
 }
