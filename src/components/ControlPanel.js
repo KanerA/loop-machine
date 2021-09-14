@@ -1,10 +1,18 @@
 import React from "react";
+import { FaPause, FaPlay, FaStop } from "react-icons/fa";
 
-function ControlPanel({ pauseAll, startAll }) {
+function ControlPanel({ pauseAll, startAll, stopBoard }) {
   return (
     <div className="controlPanel">
-      <button onClick={pauseAll}>Pause</button>
-      <button onClick={startAll}>Start</button>
+      <button className="button" onClick={startAll}>
+        <FaPlay />
+      </button>
+      <button className="button" onClick={pauseAll}>
+        <FaPause />
+      </button>
+      <button className="button" onClick={stopBoard}>
+        <FaStop />
+      </button>
     </div>
   );
 }
