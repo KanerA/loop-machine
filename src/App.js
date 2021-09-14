@@ -1,5 +1,6 @@
 import { useState, useEffect, createRef, useRef } from "react";
 import "./App.css";
+import logo from "./images/logo.png";
 import Pad from "./components/Pad";
 import audio from "./audio_loops/120_future_funk_beats_25.mp3"; //GiVintageRobot
 import audio2 from "./audio_loops/120_stutter_breakbeats_16.mp3"; //GiEchoRipples
@@ -124,30 +125,33 @@ function App() {
   }, [soundsRefs, audioList]);
 
   return (
-    <div className="loopMachine" key="loopMachine">
-      <div className="board" id="board" key="board">
-        {queue.map((sound, i) => {
-          return (
-            <Pad
-              key={`pad${i}`}
-              i={i}
-              refAudio={soundsRefs[i]}
-              padClickHandler={padClickHandler}
-              sound={sound}
-              timer={timer}
-              playing={playing}
-              soundsPlaying={soundsPlaying}
-              icon={soundIcons[i]}
-            />
-          );
-        })}
+    <div className="site">
+      <img className="logo" src={logo} alt="looper-logo" />
+      <div className="loopMachine" key="loopMachine">
+        <div className="board" id="board" key="board">
+          {queue.map((sound, i) => {
+            return (
+              <Pad
+                key={`pad${i}`}
+                i={i}
+                refAudio={soundsRefs[i]}
+                padClickHandler={padClickHandler}
+                sound={sound}
+                timer={timer}
+                playing={playing}
+                soundsPlaying={soundsPlaying}
+                icon={soundIcons[i]}
+              />
+            );
+          })}
+        </div>
+        <ControlPanel
+          key="controlPanel"
+          pauseAll={pauseAll}
+          startAll={startAll}
+          stopBoard={stopBoard}
+        />
       </div>
-      <ControlPanel
-        key="controlPanel"
-        pauseAll={pauseAll}
-        startAll={startAll}
-        stopBoard={stopBoard}
-      />
     </div>
   );
 }
