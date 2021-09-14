@@ -30,6 +30,7 @@ function App() {
   const [soundsPlaying, setSoundsPlaying] = useState([]); // list of the sounds currently playing
   const [playing, setPlaying] = useState(false);
   const [timer, setTimer] = useState(0);
+  const [stopped, setStopped] = useState(false);
   const [audioList] = useState([
     audio,
     audio2,
@@ -57,6 +58,7 @@ function App() {
   ];
 
   const padClickHandler = (sound, i) => {
+    setStopped(false);
     if (!playing) {
       // create queue if the board is on pause
       return setSoundsPlaying([...soundsPlaying, sound]);
@@ -89,6 +91,7 @@ function App() {
   const startAll = () => {
     soundsPlaying.map((sound) => sound.play());
     setPlaying(true);
+    setStopped(false);
   };
 
   const stopBoard = () => {
@@ -98,6 +101,7 @@ function App() {
     });
     setSoundsPlaying([]);
     setPlaying(false);
+    setStopped(true);
   };
 
   useEffect(() => {
@@ -137,6 +141,7 @@ function App() {
           playing={playing}
           soundsPlaying={soundsPlaying}
           soundIcons={soundIcons}
+          stopped={stopped}
         />
         <ControlPanel
           key="controlPanel"

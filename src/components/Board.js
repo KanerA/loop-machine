@@ -9,6 +9,7 @@ function Board({
   soundsPlaying,
   soundIcons,
   queue,
+  stopped,
 }) {
   return (
     <div className="board" id="board" key="board">
@@ -24,6 +25,7 @@ function Board({
             playing={playing}
             soundsPlaying={soundsPlaying}
             icon={soundIcons[i]}
+            stopped={stopped}
           />
         );
       })}

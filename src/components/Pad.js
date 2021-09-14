@@ -9,6 +9,7 @@ function Pad({
   playing,
   soundsPlaying,
   icon,
+  stopped,
 }) {
   const [padOn, setPadOn] = useState(false);
   useEffect(() => {
@@ -22,8 +23,9 @@ function Pad({
   }, [playing, timer, soundsPlaying, sound]);
 
   useEffect(() => {
-    setPadOn(playing && padOn);
-  }, [playing, padOn]);
+    if (!stopped && padOn) return setPadOn(true);
+    setPadOn(false);
+  }, [stopped, padOn]);
 
   return (
     <div
