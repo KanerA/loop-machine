@@ -11,6 +11,16 @@ import audio7 from "./audio_loops/MazePolitics_120_Perc.mp3"; //GiMaterialsScien
 import audio8 from "./audio_loops/PAS3GROOVE1.03B.mp3"; // FaDrum
 import audio9 from "./audio_loops/SilentStar_120_Em_OrganSynth.mp3"; //GiDominoMask
 import ControlPanel from "./components/ControlPanel";
+import { FaDrum, FaDrumSteelpan } from "react-icons/fa";
+import {
+  GiDrum,
+  GiGuitar,
+  GiGuitarBassHead,
+  GiEchoRipples,
+  GiMaterialsScience,
+  GiVintageRobot,
+  GiDominoMask,
+} from "react-icons/gi";
 
 function App() {
   const [soundsRefs, setSoundsRefs] = useState([]); // list of refs to access the displayed divs
@@ -31,6 +41,18 @@ function App() {
     audio7,
     audio8,
     audio9,
+  ];
+
+  const soundIcons = [
+    <GiVintageRobot />,
+    <GiEchoRipples />,
+    <GiGuitarBassHead />,
+    <GiDrum />,
+    <GiGuitar />,
+    <FaDrumSteelpan />,
+    <GiMaterialsScience />,
+    <FaDrum />,
+    <GiDominoMask />,
   ];
 
   const padClickHandler = (sound, i) => {
@@ -115,6 +137,7 @@ function App() {
                 timer={timer}
                 playing={playing}
                 soundsPlaying={soundsPlaying}
+                icon={soundIcons[i]}
               />
             </>
           );
